@@ -1,8 +1,5 @@
 #pragma once
 
 namespace jjfp::lambdas {
-static const char* TAG = "LAMBDAS";
-
-void run_sample();
-
+void run_auto_lambdas();
 }  // namespace jjfp::lambdas

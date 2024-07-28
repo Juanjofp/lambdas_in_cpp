@@ -4,6 +4,10 @@ message(STATUS "Building lambdas...")
 add_library(
   liblambdas
   src/lambdas.cpp
+  src/stl_sample.cpp
+  src/auto_lambdas.cpp
+  src/closures.cpp
+  src/class_with_lambda_sample.cpp
 )
 
 target_include_directories(
