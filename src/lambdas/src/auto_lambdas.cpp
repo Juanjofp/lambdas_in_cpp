@@ -11,12 +11,15 @@ void jjfp::lambdas::run_auto_lambdas() {
 
   // Test auto lambda
 
+  // With integer values
+
   std::vector<int> values{1, 2, 3, 4, 5};
 
   int sum = std::accumulate(values.begin(), values.end(), 0, accumalate_lambda);
 
   std::cout << "Sum of values: " << sum << std::endl;
 
+  // With double values
   std::vector<double> values_double{1.1, 2.2, 3.3, 4.4, 5.5};
 
   double sum_double = std::accumulate(
@@ -24,6 +27,7 @@ void jjfp::lambdas::run_auto_lambdas() {
 
   std::cout << "Sum of values: " << sum_double << std::endl;
 
+  // With string values
   std::vector<std::string> values_string{"1", "2", "3", "4", "5"};
 
   std::string sum_string =

@@ -29,7 +29,7 @@ void jjfp::lambdas::run_stl_sample() {
   common::Print::print_message("Values after sort:");
   common::Print::print_values(values);
 
-  // Remove values
+  // Remove values greater than 80
 
   values.erase(std::remove_if(values.begin(), values.end(),
                               [](const int& value) { return value > 80; }),
@@ -44,14 +44,15 @@ void jjfp::lambdas::run_stl_sample() {
                             [](const int& a, const int& b) { return a + b; });
   common::Print::print_message("Sum of values: " + std::to_string(sum));
 
-  // Count values
+  // Count number of values which value is less than 10
 
   int count = std::count_if(values.begin(), values.end(),
                             [](const int& value) { return value < 10; });
   common::Print::print_message("Count of values less than 10: " +
                                std::to_string(count));
 
-  // Find values
+  // Find values, it returns an iterator to the first element found
+  // or the end iterator if the value is not found
 
   auto it = std::find_if(values.begin(), values.end(),
                          [](const int& value) { return value == 11; });
@@ -67,28 +68,31 @@ void jjfp::lambdas::run_stl_sample() {
     common::Print::print_message("Value 200 not found");
   }
 
-  // All of values
+  // All of values match the predicate then return true
+  // otherwise return false
 
   bool all = std::all_of(values.begin(), values.end(),
                          [](const int& value) { return value < 100; });
   common::Print::print_message(
       std::format("All values are less than 100: {}", all ? "true" : "false"));
 
-  // Any of values
+  // Any of values match the predicate then return true
+  // otherwise return false
 
   bool any = std::any_of(values.begin(), values.end(),
                          [](const int& value) { return value > 50; });
   common::Print::print_message(
       std::format("Any value is greater than 50:  {}", any ? "true" : "false"));
 
-  // None of values
+  // None of values match the predicate then return true
+  // otherwise return false
 
   bool none = std::none_of(values.begin(), values.end(),
                            [](const int& value) { return value > 100; });
   common::Print::print_message(
       std::format("None value is greater than 100: {}", std::to_string(none)));
 
-  // Generate values
+  // Generate values with random values
 
   std::vector<int> generated_values{};
 
@@ -152,17 +156,23 @@ void jjfp::lambdas::run_stl_sample() {
 
   std::vector<int> unique_values{1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
 
+  // 1 Sort values
   std::sort(unique_values.begin(), unique_values.end());
 
   common::Print::print_message("Values sort unique:");
 
   common::Print::print_values(unique_values);
 
+  // 2 find unique values
   auto last = std::unique(unique_values.begin(), unique_values.end());
+
+  // 1 2 2 3 3 3 4 4 4 4 -> 1 2 3 4 3 3 4 4 4 4
 
   common::Print::print_message("Values after unique:");
 
   common::Print::print_values(unique_values);
+
+  // 3 erase values not unique
 
   unique_values.erase(last, unique_values.end());
 

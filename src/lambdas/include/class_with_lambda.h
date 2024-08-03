@@ -5,11 +5,15 @@
 #include <vector>
 
 namespace jjfp::lambdas::class_with_lambda {
+// Apply a lambda to each element of a vector
+
 template <typename T, typename Accumulate>
 void apply_accumulate(const std::vector<T>& values, Accumulate accumulate) {
   std::for_each(values.cbegin(), values.cend(), accumulate);
 }
 
+// Class with a method that uses a lambda to calculate statistics
+// to use the lambda in a class method, this must be captured
 class ClassWithLambda {
  public:
   ClassWithLambda() : values{1, 2, 3, 4, 5, 6, 7, 8, 9} {}
@@ -50,6 +54,8 @@ class ClassWithLambda {
   std::vector<int> values;
 };
 
+// Class that store a lambda and apply it to a list of values
+// when call apply_strategy, the lambda is applied to the values
 template <typename T, typename Predicate>
 class StoredLambdas {
  public:
@@ -73,6 +79,10 @@ class StoredLambdas {
   Predicate strategy;
 };
 
+// Class that store a lambda and apply it to a list of values
+// when call apply_strategy, the lambda is applied to the values
+// Predicate is a function pointer type
+// The lambda is stored in a function pointer
 template <typename T>
 class MoreStoredLambdas {
  public:

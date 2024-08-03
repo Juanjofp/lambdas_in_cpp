@@ -1,8 +1,24 @@
 #include "closures.h"
 
+#include <functional>
+#include <iostream>
 #include <vector>
 
 #include "print.h"
+
+// Create a lambda that captures a variable by reference
+std::function<int(int)> createLambda() {
+  int x = 10;
+  return [&x](int y) { return (2 * x) + y; };  // x sale de su ámbito aquí
+}
+
+// Danger: the lambda captures a variable by reference that is out of scope
+int danger_capture_by_reference() {
+  auto lambda = createLambda();
+  std::cout << "Danger capture by reference ((2*10)+5): " << lambda(5)
+            << std::endl;  // Comportamiento indefinido
+  return 0;
+}
 
 void jjfp::lambdas::closures::run_closure_samples() {
   // Closure
@@ -112,4 +128,7 @@ void jjfp::lambdas::closures::run_closure_samples() {
 
     return value + x + y;
   });
+
+  // Danger: the lambda captures a variable by reference that is out of scope
+  danger_capture_by_reference();
 }

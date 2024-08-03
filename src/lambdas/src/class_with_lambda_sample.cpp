@@ -8,6 +8,8 @@
 #include "print.h"
 
 void jjfp::lambdas::closures::run_class_with_lambda_sample() {
+  // Class with a method that uses a lambda
+
   class_with_lambda::ClassWithLambda class_with_lambda;
 
   class_with_lambda.print_statistics();
@@ -16,7 +18,10 @@ void jjfp::lambdas::closures::run_class_with_lambda_sample() {
 
   class_with_lambda.print_statistics();
 
+  // Class that store a lambda and apply it to a list of values
+
   using Predicate = std::function<int(const int&, const int&)>;
+
   auto lambda = [](const int& value, const int& value2) {
     return value + value2;
   };
@@ -35,6 +40,9 @@ void jjfp::lambdas::closures::run_class_with_lambda_sample() {
 
   common::Print::print_message("Result of apply strategy: " +
                                std::to_string(result));
+
+  // Class with a method that uses a lambda to calculate statistics
+  // capture values from the scope
 
   int accumulalted = 0;
   int count = 0;
@@ -61,6 +69,8 @@ void jjfp::lambdas::closures::run_class_with_lambda_sample() {
   std::cout << "Accumulated: " << accumulalted << std::endl;
   std::cout << "Count: " << count << std::endl;
 
+  // Same using string vector
+
   using Predicate2 =
       std::function<std::string(const std::string&, const std::string&)>;
 
@@ -85,11 +95,18 @@ void jjfp::lambdas::closures::run_class_with_lambda_sample() {
 
   common::Print::print_separator();
 
+  // Class that only have one generic type
+  // Lambda depends on the type
+  // Same behavior as StoredLambdas but with only one type
+
   auto lambda4 = [](const std::string& value, const std::string& value2) {
     std::cout << "Value: " << value << " Value2: " << value2 << std::endl;
 
     return value + value2;
   };
+
+  // We need to specify the type of the MoreStoredLambdas class
+  // because the compiler can't deduce the type of the lambda
 
   class_with_lambda::MoreStoredLambdas<std::string> more_stored_lambdas{
       lambda4};
@@ -105,7 +122,8 @@ void jjfp::lambdas::closures::run_class_with_lambda_sample() {
 
   common::Print::print_separator();
 
-  // Same using alias from class MoreStoredLambdas
+  // Same sample but using alias from class MoreStoredLambdas to define the
+  // lambda type
 
   class_with_lambda::MoreStoredLambdas<std::string>::Predicate lambda5 =
       [](const std::string& value, const std::string& value2) {
@@ -114,8 +132,10 @@ void jjfp::lambdas::closures::run_class_with_lambda_sample() {
         return value + value2;
       };
 
-  class_with_lambda::MoreStoredLambdas<std::string> more_stored_lambdas2{
-      lambda5};
+  // We don't need to specify the type of the MoreStoredLambdas class
+  // because the compiler can deduce the type of the lambda
+
+  class_with_lambda::MoreStoredLambdas more_stored_lambdas2{lambda5};
 
   more_stored_lambdas2.add_value("Hello");
   more_stored_lambdas2.add_value(",");
